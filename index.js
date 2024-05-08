@@ -241,6 +241,27 @@ app.get('/vehiculo/:id', (req, res) => {
   res.json(vehiculoPorId)
 })
 
+//VEHICULO POR MARCA
+app.get('/vehiculo/:marca', (req, res) => {
+  const marca = parseInt(req.params.marca);
+  const vehiculoPorMarca = vehiculos.find(vehiculo => vehiculo.marca === marca)
+  res.json(vehiculoPorMarca)
+})
+
+//TIPO DE VEHICULO
+app.get('/vehiculo/:tipo', (req, res) => {
+  const tipo = parseInt(req.params.tipo);
+  const vehiculoPorTipo = vehiculos.find(vehiculo => vehiculo.tipo === tipo)
+  res.json(vehiculoPorTipo)
+})
+
+//PRODUCTO POR NOMBRE
+app.get('/producto/:name', (req, res) => {
+  const name = parseInt(req.params.name);
+  const productoPorNombre = productos.find(producto => producto.nombre === name)
+  res.json(productoPorNombre)
+})
+
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
