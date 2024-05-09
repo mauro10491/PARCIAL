@@ -255,12 +255,36 @@ app.get('/vehiculo/:tipo', (req, res) => {
   res.json(vehiculoPorTipo)
 })
 
+//VEGHICULO POR COLOR
+app.get('/vehiculo/:color', (req, res) => {
+  const color = parseInt(req.params.color);
+  const vehiculoPorColor = vehiculos.find(vehiculo => vehiculo.color === color)
+  res.json(vehiculoPorColor)
+})
+
 //PRODUCTO POR NOMBRE
 app.get('/producto/:name', (req, res) => {
   const name = parseInt(req.params.name);
   const productoPorNombre = productos.find(producto => producto.nombre === name)
   res.json(productoPorNombre)
 })
+
+//BUSCAR PRODUCTO POR PALABRA CLAVE
+app.get('/producto/:keyword', (req, res) => {
+  const keyword = parseInt(req.params.keyword);
+  const productoPorKeyword = productos.find(producto => producto.descripcion.toLowerCase().includes(keyword))
+  res.json(productoPorKeyword)
+})
+
+app.get('/vehiculos/cantidad-total', (req, res) => {
+  const cantidad = vehiculos.length
+  res.json({
+    cantidad: cantidad
+  })
+}
+)
+
+
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
